@@ -12,5 +12,8 @@ Route::get('/test-1', function () {
     if ($diskConfig['driver'] === 'local') {
         logger()->error('disk config lost');
         return 'disk config lost';
+    } else {
+        logger()->debug('all good');
+        return 'OK';
     }
 });
