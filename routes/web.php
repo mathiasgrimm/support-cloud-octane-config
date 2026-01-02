@@ -7,11 +7,10 @@ Route::get('/', function () {
 });
 
 Route::get('/test-1', function () {
-    $privateDisk = array_filter((array) config('filesystems.disks.private'));
+    $diskConfig = config('filesystems.disks.public.driver');
 
-    if ($privateDisk) {
-        //logger("disk found");
-    } else {
-        logger("disk not found");
+    if ($diskConfig['driver'] === 'local') {
+        logger("disk config lost");
+        return 'disk config lost';
     }
 });
