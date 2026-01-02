@@ -7,13 +7,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test-1', function () {
-    $diskConfig = config('filesystems.disks.public');
-
-    if ($diskConfig['driver'] === 'local') {
-        logger()->error('disk config lost');
-        return 'disk config lost';
-    } else {
-        logger()->debug('all good');
-        return 'OK';
-    }
+    logger('test1', [
+        'filesystems' => config('filesystems'),
+        'laravel_cloud' => laravel_cloud(),
+    ]);
 });
