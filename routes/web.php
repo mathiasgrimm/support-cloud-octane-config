@@ -10,7 +10,7 @@ Route::get('/test-1', function () {
     $diskConfig = config('filesystems.disks.public');
 
     if ($diskConfig['driver'] === 'local') {
-        logger("disk config lost");
+        logger()->error('disk config lost');
         return 'disk config lost';
     }
 });
