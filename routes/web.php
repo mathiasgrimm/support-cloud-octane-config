@@ -7,8 +7,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test-1', function () {
-    logger('test1', [
-        'filesystems' => config('filesystems'),
-        'laravel_cloud' => laravel_cloud(),
-    ]);
+    $filesystems = config('filesystems');
+
+    if ($filesystems['disks']['public']['driver'] == 's3') {
+        logger('test1', [
+            'filesystems' => $filesystems,
+            'laravel_cloud' => laravel_cloud(),
+        ]);
+    } else {
+        logger()->error('missing disk', [
+            'filesystems' => $filesystems,
+            'laravel_cloud' => laravel_cloud(),
+        ]);
+    }
+
 });
